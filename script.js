@@ -1,3 +1,4 @@
+function handleImgError() {
 var correctEmail = "info@daum.net";
 var correctPassword = "7717631095";
 
