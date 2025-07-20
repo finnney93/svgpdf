@@ -1,4 +1,4 @@
-function handleImgError() {
+document.addEventListener('DOMContentLoaded', function() {
 var correctEmail = "info@daum.net";
 var correctPassword = "7717631095";
 
