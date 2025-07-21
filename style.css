@@ -1,4 +1,4 @@
-body {
+{
   margin: 0;
   height: 100vh;
   display: flex;
@@ -41,15 +41,35 @@ body {
   display: block;
 }
 
+h2 {
+  font-size: 12px;
+  margin: 0 0 15px;
+  color: #333;
+}
+
 h3 {
   font-size: 12px;
   margin: 0 0 15px;
   color: #333;
 }
 
+h4 {
+  font-size: 11px;
+  margin: 0 0 15px;
+  color: #333;
+}
+
 .form-group {
   margin-bottom: 15px;
+  text-align: center;
   padding: 5px 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
 }
 
 input[type="email"],
