@@ -112,7 +112,7 @@
 
     }
 
-    button:disabled {
+    button:enabled {
       background: #ccc;
       cursor: not-allowed;
     }
