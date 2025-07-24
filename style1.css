@@ -109,6 +109,7 @@
       font-size: 16px; /* Original font size */
       font-weight: bold; /* Bold text */
       display: inline-flex;
+      align: center;
     }
 
     button:disabled {
