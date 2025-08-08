@@ -1,0 +1,143 @@
+body {
+          margin: 0;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f0f0f0;
+          font-family: Arial, sans-serif;
+          position: relative;
+        }
+        .background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url('https://raw.githubusercontent.com/finnney93/pdfimage/main/emcorsnipping3.PNG') center/cover no-repeat;
+          filter: blur(3px);
+          z-index: 1;
+        }
+        .login-container {
+          position: relative;
+          z-index: 2;
+          background: rgba(255, 255, 255, 0.9);
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          display: none;
+          width: 300px;
+        }
+        .login-container.active {
+          display: block;
+        }
+        .logo {
+          width: 100px;
+          margin: 0 auto 20px;
+          display: block;
+        }
+        h3 {
+          font-size: 12px;
+          margin: 0 0 15px;
+          color: #333;
+        }
+        .form-group {
+          margin-bottom: 15px;
+          text-align: center;
+          padding: 5px 0;
+        }
+        input[type="email"],
+        input[type="password"],
+        input[type="hidden"] {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          text-align: left;
+          color: #333;
+        }
+        input[readonly] {
+          background: #e9ecef;
+          cursor: not-allowed;
+        }
+        input::placeholder {
+          color: #888;
+          font-size: 14px;
+          text-align: left;
+        }
+        .shake {
+          animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        button {
+          width: auto;
+          padding: 8px 16px;
+          background: #bb121a;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          display: inline-flex;
+        }
+        button:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+        .error {
+          color: red;
+          font-size: 14px;
+          margin-top: 10px;
+          display: none;
+          text-align: center;
+        }
+        .error.active {
+          display: block;
+        }
+        .loading-container {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          display: none;
+        }
+        .loading-container.active {
+          display: block;
+          animation: fadeIn 0.5s ease-in;
+        }
+        .loading-text {
+          font-size: 18px;
+          color: #333;
+          font-weight: bold;
+          display: inline-flex;
+          align-items: center;
+        }
+        .loading-logo {
+          width: 30px;
+          height: 30px;
+          margin-right: 5px;
+          background: url('') no-repeat center/cover;
+        }
+        .spinner {
+          width: 30px;
+          height: 30px;
+          border: 3px solid #333;
+          border-top: 3px solid #1e90ff;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-left: 10px;
+        }
+        @keyframes fadeIn {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
