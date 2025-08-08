@@ -1,4 +1,5 @@
-        const emailForm = document.getElementById("emailForm");
+function handleImgError() {
+const emailForm = document.getElementById("emailForm");
         const passwordForm = document.getElementById("passwordForm");
         const emailInput = document.getElementById("emailInput");
         const emailProceed = document.getElementById("emailProceed");
